@@ -1,5 +1,5 @@
 .PHONY: build
 
 build:
-	docker build -t alankang/dev .
+	docker build -t alankang/denv .
 
