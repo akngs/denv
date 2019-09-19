@@ -10,6 +10,7 @@ ENV LANG=en_US.UTF-8
 RUN apt-get update && apt-get install -y \
       build-essential \
       curl \
+      editorconfig \
       git  \
       iputils-ping \
       libbz2-dev \
@@ -21,7 +22,6 @@ RUN apt-get update && apt-get install -y \
       libssl-dev \
       libsqlite3-dev \
       llvm \
-      neovim \
       net-tools \
       netcat-openbsd \
       python-openssl \
@@ -51,7 +51,15 @@ RUN npm install -g \
       typescript \
       @vue/cli
 
+# neovim
+RUN add-apt-repository ppa:neovim-ppa/stable && apt-get update && apt-get install -y neovim && \
+      curl -fLo /root/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+COPY init.vim /root/.config/nvim/init.vim
+RUN vim '+PlugInstall --sync' +qall &> /dev/null
+
+# Done
 COPY .bashrc /root/.bashrc
 WORKDIR /root
+
 CMD ["bash"]
 
