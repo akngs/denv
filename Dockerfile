@@ -32,6 +32,7 @@ RUN apt-get update && apt-get install -y \
       tmux \
       wget \
       xz-utils \
+      yadm \
       zlib1g-dev
 
 # pyenv
