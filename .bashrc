@@ -60,3 +60,6 @@ eval "$(pyenv virtualenv-init -)"
 export PATH="/root/.poetry/bin:$PATH"
 poetry completions bash > /etc/bash_completion.d/poetry.bash-completion
 
+# misc.
+export GPG_TTY=$(tty)
+
