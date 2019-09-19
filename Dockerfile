@@ -58,7 +58,11 @@ COPY init.vim /root/.config/nvim/init.vim
 RUN vim '+PlugInstall --sync' +qall &> /dev/null
 
 # Done
+COPY .profile /root/.profile
+COPY .bash_profile /root/.bash_profile
 COPY .bashrc /root/.bashrc
+COPY .tmux.conf /root/.tmux.conf
+
 WORKDIR /root
 
 CMD ["bash"]
