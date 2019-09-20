@@ -68,6 +68,7 @@ COPY .profile /root/.profile
 COPY .bash_profile /root/.bash_profile
 COPY .bashrc /root/.bashrc
 COPY .tmux.conf /root/.tmux.conf
+COPY yadm.git.config /root/.config/yadm.git.config
 
 WORKDIR /root
 

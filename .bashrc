@@ -54,6 +54,7 @@ alias l='ls -CF'
 # yadm
 if [ ! -d /root/.yadm ]; then
     yadm clone https://github.com/akngs/denv-dotfiles
+    cp ~/.config/yadm.git.config ~/.yadm/repo.git/config
 fi
 
 # pyenv
