@@ -58,6 +58,11 @@ RUN add-apt-repository ppa:neovim-ppa/stable && apt-get update && apt-get instal
 COPY init.vim /root/.config/nvim/init.vim
 RUN vim '+PlugInstall --sync' +qall &> /dev/null
 
+# Colors and italics for tmux
+COPY xterm-256color-italic.terminfo /root
+RUN tic /root/xterm-256color-italic.terminfo
+ENV TERM=xterm-256color-italic
+
 # Done
 COPY .profile /root/.profile
 COPY .bash_profile /root/.bash_profile
