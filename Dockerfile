@@ -59,8 +59,8 @@ COPY init.vim /root/.config/nvim/init.vim
 RUN vim '+PlugInstall --sync' +qall &> /dev/null
 
 # Colors and italics for tmux
-COPY xterm-256color-italic.terminfo /root
-RUN tic /root/xterm-256color-italic.terminfo
+COPY xterm-256color-italic.terminfo /root/.config/
+RUN tic /root/.config/xterm-256color-italic.terminfo
 ENV TERM=xterm-256color-italic
 
 # Done

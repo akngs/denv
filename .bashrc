@@ -51,6 +51,11 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+# yadm
+if [ ! -d /root/.yadm ]; then
+    yadm clone https://github.com/akngs/denv-dotfiles
+fi
+
 # pyenv
 export PATH="/root/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
@@ -62,4 +67,3 @@ poetry completions bash > /etc/bash_completion.d/poetry.bash-completion
 
 # misc.
 export GPG_TTY=$(tty)
-
