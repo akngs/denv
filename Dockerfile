@@ -51,6 +51,8 @@ RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - && \
 
 # global nodejs packages
 RUN npm install -g \
+      eslint \
+      stylelint \
       typescript \
       @vue/cli
 
