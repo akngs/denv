@@ -1,4 +1,3 @@
-
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
@@ -58,7 +57,10 @@ if [ ! -d /root/.yadm ]; then
 fi
 
 # vim
-vim '+PlugInstall --sync' +qall &> null
+if [ ! -f /root/.config/vim-plug-installed ]; then
+    vim '+PlugInstall --sync' +qall &> null
+    touch /root/.config/vim-plug-installed
+fi
 
 # pyenv
 export PATH="/root/.pyenv/bin:$PATH"
