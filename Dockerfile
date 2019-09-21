@@ -30,6 +30,7 @@ RUN apt-get update && apt-get install -y \
       software-properties-common \
       tk-dev \
       tmux \
+      tmuxinator \
       vim \
       wget \
       xz-utils \
