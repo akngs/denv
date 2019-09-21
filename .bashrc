@@ -58,7 +58,7 @@ if [ ! -d /root/.yadm ]; then
 fi
 
 # vim
-vim '+PlugInstall --sync' +qall &> /dev/null
+vim '+PlugInstall --sync' +qall &> null
 
 # pyenv
 export PATH="/root/.pyenv/bin:$PATH"
