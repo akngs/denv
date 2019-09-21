@@ -57,6 +57,9 @@ if [ ! -d /root/.yadm ]; then
     cp ~/.config/yadm.git.config ~/.yadm/repo.git/config
 fi
 
+# vim
+vim '+PlugInstall --sync' +qall &> /dev/null
+
 # pyenv
 export PATH="/root/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"

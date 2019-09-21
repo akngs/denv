@@ -30,6 +30,7 @@ RUN apt-get update && apt-get install -y \
       software-properties-common \
       tk-dev \
       tmux \
+      vim \
       wget \
       xz-utils \
       yadm \
@@ -52,16 +53,8 @@ RUN npm install -g \
       typescript \
       @vue/cli
 
-# neovim
-RUN add-apt-repository ppa:neovim-ppa/stable && apt-get update && apt-get install -y neovim && \
-      curl -fLo /root/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-COPY init.vim /root/.config/nvim/init.vim
-RUN vim '+PlugInstall --sync' +qall &> /dev/null
-
-# Colors and italics for tmux
-COPY xterm-256color-italic.terminfo /root/.config/
-RUN tic /root/.config/xterm-256color-italic.terminfo
-ENV TERM=xterm-256color-italic
+# vim-plug
+RUN curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # Done
 COPY .profile /root/.profile
