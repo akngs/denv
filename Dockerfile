@@ -51,6 +51,7 @@ RUN /root/.pyenv/shims/pip install --upgrade pip && /root/.pyenv/shims/pip insta
       autopep8 \
       flake8 \
       isort \
+      powerline-shell \
       pylint \
       yapf
 
@@ -78,6 +79,7 @@ COPY .profile /root/.profile
 COPY .bash_profile /root/.bash_profile
 COPY .bashrc /root/.bashrc
 COPY .tmux.conf /root/.tmux.conf
+COPY powerline-shell.config.json /root/.config/powerline-shell/config.json
 COPY yadm.git.config /root/.config/yadm.git.config
 
 WORKDIR /root
