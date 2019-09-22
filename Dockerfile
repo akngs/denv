@@ -37,13 +37,22 @@ RUN apt-get update && apt-get install -y \
       yadm \
       zlib1g-dev
 
-# pyenv
+# python
+## pyenv
 RUN curl https://pyenv.run | bash && \
       /root/.pyenv/bin/pyenv install 3.7.4 && \
       /root/.pyenv/bin/pyenv global 3.7.4
 
-# poetry
+## poetry
 RUN curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python && rm /root/.profile
+
+## global packages
+RUN /root/.pyenv/shims/pip install --upgrade pip && /root/.pyenv/shims/pip install \
+      autopep8 \
+      flake8 \
+      isort \
+      pylint \
+      yapf
 
 # nodejs
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - && \
