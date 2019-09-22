@@ -28,11 +28,8 @@ if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
 fi
 
 # powerline shell
-function _update_ps1() {
-    PS1=$(powerline-shell $?)
-}
-if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
-    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+if [ "$TERM" != "linux" ]; then
+    source ~/.config/pureline/pureline ~/.config/pureline.conf
 fi
 
 # If this is an xterm set the title to user@host:dir

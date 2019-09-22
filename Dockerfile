@@ -51,7 +51,6 @@ RUN /root/.pyenv/shims/pip install --upgrade pip && /root/.pyenv/shims/pip insta
       autopep8 \
       flake8 \
       isort \
-      powerline-shell \
       pylint \
       yapf
 
@@ -74,12 +73,15 @@ RUN git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && \
 # vim-plug
 RUN curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
+# pureline prompt
+RUN mkdir -p ~/.config && git clone https://github.com/chris-marsh/pureline.git ~/.config/pureline
+COPY pureline.conf /root/.config/pureline.conf
+
 # Done
 COPY .profile /root/.profile
 COPY .bash_profile /root/.bash_profile
 COPY .bashrc /root/.bashrc
 COPY .tmux.conf /root/.tmux.conf
-COPY powerline-shell.config.json /root/.config/powerline-shell/config.json
 COPY yadm.git.config /root/.config/yadm.git.config
 
 WORKDIR /root
