@@ -31,6 +31,7 @@ RUN apt-get update && apt-get install -y \
       tk-dev \
       tmux \
       tmuxinator \
+      tree \
       vim \
       wget \
       xz-utils \
@@ -49,6 +50,7 @@ RUN curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poet
 ## global packages
 RUN /root/.pyenv/shims/pip install --upgrade pip && /root/.pyenv/shims/pip install \
       autopep8 \
+      cookiecutter \
       flake8 \
       isort \
       pylint \
