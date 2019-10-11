@@ -19,6 +19,12 @@ HISTFILESIZE=2000
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
+# yadm
+if [ ! -d /root/.yadm ]; then
+    yadm clone https://github.com/akngs/denv-dotfiles
+    cp ~/.config/yadm.git.config ~/.yadm/repo.git/config
+fi
+
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
@@ -41,21 +47,16 @@ xterm*|rxvt*)
     ;;
 esac
 
-for file in ~/.{aliases,exports,functions}; do
-	[ -r "$file" ] && [ -f "$file" ] && source "$file";
-done;
-unset file;
-
 # enable color support of ls
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 fi
 
-# yadm
-if [ ! -d /root/.yadm ]; then
-    yadm clone https://github.com/akngs/denv-dotfiles
-    cp ~/.config/yadm.git.config ~/.yadm/repo.git/config
-fi
+# external dot files
+for file in ~/.{aliases,exports,functions}; do
+	[ -r "$file" ] && [ -f "$file" ] && source "$file";
+done;
+unset file;
 
 # vim
 if [ ! -f /root/.config/vim-plug-installed ]; then
