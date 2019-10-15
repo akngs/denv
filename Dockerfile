@@ -42,6 +42,7 @@ RUN apt-get update && apt-get install -y \
 ## pyenv
 RUN curl https://pyenv.run | bash && \
       /root/.pyenv/bin/pyenv install 3.7.4 && \
+      /root/.pyenv/bin/pyenv install 3.8.0 && \
       /root/.pyenv/bin/pyenv global 3.7.4
 
 ## poetry
@@ -77,7 +78,6 @@ RUN curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubuserconte
 
 # pureline prompt
 RUN mkdir -p ~/.config && git clone https://github.com/chris-marsh/pureline.git ~/.config/pureline
-COPY pureline.conf /root/.config/pureline.conf
 
 # Done
 COPY .profile /root/.profile
