@@ -35,7 +35,7 @@ fi
 
 # powerline shell
 if [ "$TERM" != "linux" ]; then
-    source ~/.config/pureline/pureline ~/.config/pureline.conf
+    source ~/.config/pureline/pureline ~/.pureline.conf
 fi
 
 # If this is an xterm set the title to user@host:dir
