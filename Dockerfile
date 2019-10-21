@@ -36,7 +36,17 @@ RUN apt-get update && apt-get install -y \
       wget \
       xz-utils \
       yadm \
-      zlib1g-dev
+      zlib1g-dev \
+      zsh
+
+# zsh
+RUN chsh -s $(which zsh) && \
+      rm ~/.bashrc && \
+      sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+# nodejs
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - && \
+      apt-get install -y nodejs
 
 # python
 ## pyenv
@@ -44,29 +54,6 @@ RUN curl https://pyenv.run | bash && \
       /root/.pyenv/bin/pyenv install 3.7.4 && \
       /root/.pyenv/bin/pyenv install 3.8.0 && \
       /root/.pyenv/bin/pyenv global 3.7.4
-
-## poetry
-RUN curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python && rm /root/.profile
-
-## global packages
-RUN /root/.pyenv/shims/pip install --upgrade pip && /root/.pyenv/shims/pip install \
-      autopep8 \
-      cookiecutter \
-      flake8 \
-      isort \
-      pylint \
-      yapf
-
-# nodejs
-RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - && \
-      apt-get install -y nodejs
-
-# global nodejs packages
-RUN npm install -g \
-      eslint \
-      stylelint \
-      typescript \
-      @vue/cli
 
 # fzf
 RUN git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && \
@@ -76,17 +63,33 @@ RUN git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && \
 # vim-plug
 RUN curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-# pureline prompt
-RUN mkdir -p ~/.config && \
-      git clone https://github.com/chris-marsh/pureline.git ~/.config/pureline
+# npm global packages
+RUN npm install -g \
+      eslint \
+      stylelint \
+      typescript \
+      @vue/cli
+
+# poetry
+RUN curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python && \
+      rm /root/.profile && \
+      mkdir -p ~/.oh-my-zsh/plugins/poetry && \
+      ~/.poetry/bin/poetry completions zsh > ~/.oh-my-zsh/plugins/poetry/_poetry
+
+# python global packages
+RUN /root/.pyenv/shims/pip install --upgrade pip && /root/.pyenv/shims/pip install \
+      autopep8 \
+      cookiecutter \
+      flake8 \
+      isort \
+      pylint \
+      yapf
 
 # Done
-COPY .profile /root/.profile
-COPY .bash_profile /root/.bash_profile
-COPY .bashrc /root/.bashrc
+COPY entrypoint.sh /root/.config/entrypoint.sh
 COPY yadm.git.config /root/.config/yadm.git.config
 
 WORKDIR /root
 
-CMD ["bash"]
+CMD ["/root/.config/entrypoint.sh"]
 
