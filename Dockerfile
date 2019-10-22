@@ -25,6 +25,8 @@ RUN apt-get update && apt-get install -y \
       net-tools \
       netcat-openbsd \
       python-openssl \
+      ruby \
+      ruby-dev \
       silversearcher-ag \
       socat \
       software-properties-common \
@@ -54,6 +56,11 @@ RUN curl https://pyenv.run | bash && \
       /root/.pyenv/bin/pyenv install 3.7.4 && \
       /root/.pyenv/bin/pyenv install 3.8.0 && \
       /root/.pyenv/bin/pyenv global 3.7.4
+
+# ruby
+RUN gem install \
+      bundler \
+      jekyll
 
 # fzf
 RUN git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && \
