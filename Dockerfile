@@ -8,12 +8,17 @@ ENV LANG=en_US.UTF-8
 
 # common packages
 RUN apt-get update && apt-get install -y \
+      autotools-dev \
+      automake \
+      bison \
       build-essential \
       curl \
       editorconfig \
+      flex \
       git  \
       iputils-ping \
       libbz2-dev \
+      libevent-dev \
       libffi-dev \
       liblzma-dev \
       libncurses5-dev \
@@ -24,12 +29,14 @@ RUN apt-get update && apt-get install -y \
       llvm \
       net-tools \
       netcat-openbsd \
+      pkg-config \
       python-openssl \
       ruby \
       ruby-dev \
       silversearcher-ag \
       socat \
       software-properties-common \
+      tidy \
       tk-dev \
       tmux \
       tmuxinator \
@@ -41,6 +48,17 @@ RUN apt-get update && apt-get install -y \
       zlib1g-dev \
       zsh
 
+# tmux
+RUN git clone https://github.com/tmux/tmux.git && \
+      cd tmux && \
+      sh autogen.sh && \
+      ./configure && \
+      make && \
+      make install && \
+      cp /usr/local/bin/tmux /usr/bin/tmux && \
+      cd .. && \
+      rm -rf tmux
+ 
 # zsh
 RUN chsh -s $(which zsh) && \
       rm ~/.bashrc && \
