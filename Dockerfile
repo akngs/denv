@@ -27,10 +27,12 @@ RUN apt-get update && apt-get install -y \
       libssl-dev \
       libsqlite3-dev \
       llvm \
+      mosh \
       net-tools \
       netcat-openbsd \
       pkg-config \
       python-openssl \
+      rsync \
       ruby \
       ruby-dev \
       silversearcher-ag \
