@@ -15,6 +15,7 @@ RUN apt-get update && apt-get install -y \
       curl \
       editorconfig \
       flex \
+      gettext \
       git  \
       iputils-ping \
       libbz2-dev \
